@@ -83,10 +83,6 @@ function addPokemon(trainerID){
         fetch(POKEMONS_URL, reqObj)
             .then(resp => {
                 resp
-            }).then(function(data)=> {
-
-                // const pokeInfo = `<li>${data.nickname} (${data.species})<button class="release" data-pokemon-id=${data.id}>Release</button></li>`;
-                console.log(roster)
             })
           
     } else {
