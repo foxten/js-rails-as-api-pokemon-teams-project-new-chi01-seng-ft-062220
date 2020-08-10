@@ -84,7 +84,6 @@ function addPokemon(trainerID){
               return resp.json()
             })
             .then(pokemon => {
-                console.log(pokemon)
                 const updatedCard = document.getElementById(`${trainerID}-pokemon`)
                 const newPoke = `<li>${pokemon.nickname} (${pokemon.species})<button class="release" data-pokemon-id=${pokemon.id}>Release</button></li>`;
                 updatedCard.innerHTML += newPoke
