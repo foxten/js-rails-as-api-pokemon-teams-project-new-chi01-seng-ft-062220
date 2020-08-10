@@ -58,7 +58,7 @@ function addClickListener(){
 
                 event.target.parentNode.remove()
             } else {
-                const trainerID = event.target.parentNode.dataset.id
+                const trainerID = event.target.dataset.trainerId
                 addPokemon(trainerID)
                 // trainer id should be set to the id for the parentNode
             }
@@ -76,13 +76,18 @@ function addPokemon(trainerID){
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                Accept: "application/json"
             },
-            body: JSON.stringify({"trainer_id": parseInt(trainerID)})
+            body: JSON.stringify({"trainerID": parseInt(trainerID)})
         }
         fetch(POKEMONS_URL, reqObj)
             .then(resp => {
-                resp
+              return resp.json()
+            })
+            .then(pokemon => {
+                console.log(pokemon)
+                const updatedCard = document.getElementById(`${trainerID}-pokemon`)
+                const newPoke = `<li>${pokemon.nickname} (${pokemon.species})<button class="release" data-pokemon-id=${pokemon.id}>Release</button></li>`;
+                updatedCard.innerHTML += newPoke
             })
           
     } else {
